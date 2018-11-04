@@ -33,6 +33,6 @@ if __name__ == "__main__":
         clientsock, addr = serversock.accept()
         print("connected from", addr)
         print("received data:", clientsock.recv(BUFSIZ).decode())
-        t = threading.Thread(handler(clientsock, addr))
+        t = threading.Thread(target=handler, args=(clientsock, addr))
         t.start()
 

@@ -10,9 +10,9 @@ def handler(clientsock, addr):
     data = clientsock.recv(BUFSIZ)
     if not data:
         exit()
-    waterleveling = waterlevel.waterlevel.decode() + '\n'
-    response = temp.byteTemp + waterleveling.encode()
-    clientsock.send(response)
+
+    response = temp.stringTemp + waterlevel.waterleveling
+    clientsock.send(response.encode())
     clientsock.close()
 
 

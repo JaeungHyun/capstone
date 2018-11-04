@@ -2,9 +2,10 @@ import serial
 
 port = '/dev/ttyACM0'
 
-data = serial.Serial(port, baudrate=9600, timeout = None)
+data = serial.Serial(port, baudrate=9600, timeout=None)
 
 waterlevel = data.readline()
-
+waterleveling = waterlevel.waterlevel.decode() + '\n'
+print(waterlevel.decode())
 
 

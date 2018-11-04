@@ -4,9 +4,7 @@ port = '/dev/ttyACM0'
 
 data = serial.Serial(port, baudrate=9600, timeout = None)
 
-
-while 1:
-    waterlevel = data.readline()
+waterlevel = data.readline()
 
 
 

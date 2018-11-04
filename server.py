@@ -2,6 +2,7 @@
 
 import temp
 import Relay
+import waterlevel
 from socket import *
 import threading
 
@@ -9,7 +10,9 @@ def handler(clientsock, addr):
     data = clientsock.recv(BUFSIZ)
     if not data:
         exit()
-    clientsock.send(temp.byteTemp)
+    waterleveling = waterlevel.waterlevel.decode() + '\n'
+    response = temp.byteTemp + waterleveling.encode()
+    clientsock.send(response)
     clientsock.close()
 
 
@@ -26,6 +29,6 @@ if __name__ == "__main__":
         print("Waiting for connection...")
         clientsock, addr = serversock.accept()
         print("connected from", addr)
-        print("received data:", clientsock.recv(1024))
+        print("received data:", clientsock.recv(BUFSIZ))
         t = threading.Thread(handler(clientsock, addr))
 

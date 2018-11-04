@@ -9,7 +9,9 @@ import threading
 def handler(clientsock, addr):
     print(1)
     data = clientsock.recv(BUFSIZ)
+
     if not data:
+        print('here')
         exit()
     response = temp.stringTemp + waterlevel.waterleveling
     print(2)

@@ -10,6 +10,7 @@ print('Connect waiting......')
 
 conn, addr = s.accept()
 print('Connected by', addr)
+print(temp.byteTemp)
 
 while 1:
     data = conn.recv(1024)
@@ -18,7 +19,7 @@ while 1:
 
     print('received data :', data)
     conn.send(temp.byteTemp)
-    print(temp.byteTemp)
+
 
 conn.close()
 s.close()

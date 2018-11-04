@@ -12,7 +12,7 @@ import waterlevel
 
 print_lock = threading.Lock()
 
-# thread fuction
+# thread function
 def threaded(c):
     while True:
         # data received from client 
@@ -22,9 +22,9 @@ def threaded(c):
             # lock released on exit 
             print_lock.release()
             break
-        temp.temp()
-        waterlevel.waterleveling()
-        data = temp.stringTemp + waterlevel.waterleveling
+        t_value = temp.temp()
+        w_value = waterlevel.waterleveling()
+        data = t_value + w_value
         msg = bytearray(data, 'utf-8')
 
         c.send(msg)

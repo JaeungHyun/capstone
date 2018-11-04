@@ -8,5 +8,6 @@ def waterleveling():
     waterlevel = data.readline()
     waterleveling = waterlevel.decode() + '\n'
     print(waterlevel.decode())
+    return waterleveling
 
 

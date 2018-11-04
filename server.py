@@ -1,6 +1,7 @@
 # *-* coding: utf-8*-*
 
 import temp
+import Relay
 from socket import *
 import threading
 
@@ -9,7 +10,6 @@ def handler(clientsock, addr):
     if not data:
         exit()
     clientsock.send(temp.byteTemp)
-
     clientsock.close()
 
 
@@ -26,5 +26,6 @@ if __name__ == "__main__":
         print("Waiting for connection...")
         clientsock, addr = serversock.accept()
         print("connected from", addr)
+        print("received data:", clientsock.recv(1024))
         t = threading.Thread(handler(clientsock, addr))
 

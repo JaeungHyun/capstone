@@ -16,13 +16,13 @@ while 1:
     conn, addr = s.accept()
     print('Connected by', addr)
 
-    while 1:
-        data = conn.recv(1024)
-        if not data:
-            break
 
-        print('received data :', data)
-        conn.send(temp.byteTemp)
+    data = conn.recv(1024)
+    if not data:
+        break
+
+    print('received data :', data)
+    conn.send(temp.byteTemp)
 
 conn.close()
 s.close()

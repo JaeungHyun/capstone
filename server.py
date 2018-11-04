@@ -22,7 +22,7 @@ def threaded(c):
             # lock released on exit 
             print_lock.release()
             break
-        t_value = temp.temp()
+        t_value = temp.checktemp()
         w_value = waterlevel.waterleveling()
         data = t_value + w_value
         msg = bytearray(data, 'utf-8')

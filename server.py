@@ -6,7 +6,7 @@ from socket import *
 s = socket(AF_INET, SOCK_STREAM)
 s.bind(('', 12222))
 s.listen(1)
-print('Connect wating......')
+print('Connect waiting......')
 
 conn, addr = s.accept()
 print('Connected by', addr)
@@ -17,7 +17,7 @@ while 1:
         break
 
     print('received data :', data)
-    conn.send(temp.temperature)
+    conn.send(temp.byteTemp)
 
 conn.close()
 s.close()

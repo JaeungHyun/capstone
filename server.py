@@ -11,9 +11,9 @@ def handler(clientsock, addr):
     if not data:
         exit()
     
-    #strresponse = temp.stringTemp + waterlevel.waterleveling
-    #response = strresponse.encode()
-    clientsock.send(data)
+    response = temp.stringTemp + waterlevel.waterleveling
+    msg=bytearray(response,'utf-8')
+    clientsock.send(msg)
     clientsock.close()
 
 
@@ -24,13 +24,15 @@ if __name__ == "__main__":
     ADDR = (HOST, PORT)
     serversock = socket(AF_INET, SOCK_STREAM)
     serversock.bind(ADDR)
-    serversock.listen(2)
+    serversock.listen(1)
+
 
     while 1:
         print("Waiting for connection...")
         clientsock, addr = serversock.accept()
         print("connected from", addr)
         print("received data:", clientsock.recv(BUFSIZ).decode())
-        t = threading.Thread(target=handler, args=(clientsock, addr))
-        t.start()
-
+        t1 = threading.Thread(target=handler, args=(clientsock, addr))
+        t1.start()
+        t2 = threading.Thread(target=handler, args=(clientsock, addr))
+        t2.start()

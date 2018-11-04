@@ -24,6 +24,7 @@ def threaded(c):
             break
         t_value = temp.checktemp()
         w_value = waterlevel.waterleveling()
+        print(t_value, w_value)
         data = t_value + w_value
         msg = bytearray(data, 'utf-8')
 

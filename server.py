@@ -7,18 +7,16 @@ from socket import *
 import threading
 
 def handler(clientsock, addr):
-    print(1)
-    data = clientsock.recv(BUFSIZ)
+    data = threading.local()
+    data.x =  clientsock.recv(BUFSIZ)
 
-    if not data:
-        print('here')
+    if not data.x:
         exit()
-    response = temp.stringTemp + waterlevel.waterleveling
-    print(2)
-    clientsock.send(response.encode())
-    print(3)
+    
+    strresponse = temp.stringTemp + waterlevel.waterleveling
+    response = strresponse.encode()
+    clientsock.send(response)
     clientsock.close()
-    print(4)
 
 
 if __name__ == "__main__":

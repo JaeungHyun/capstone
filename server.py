@@ -7,13 +7,16 @@ from socket import *
 import threading
 
 def handler(clientsock, addr):
+    print(1)
     data = clientsock.recv(BUFSIZ)
     if not data:
         exit()
-
     response = temp.stringTemp + waterlevel.waterleveling
+    print(2)
     clientsock.send(response.encode())
+    print(3)
     clientsock.close()
+    print(4)
 
 
 if __name__ == "__main__":
@@ -29,6 +32,6 @@ if __name__ == "__main__":
         print("Waiting for connection...")
         clientsock, addr = serversock.accept()
         print("connected from", addr)
-        print("received data:", clientsock.recv(BUFSIZ))
+        print("received data:", clientsock.recv(BUFSIZ).decode())
         t = threading.Thread(handler(clientsock, addr))
 

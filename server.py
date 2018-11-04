@@ -13,7 +13,7 @@ def handler(clientsock, addr):
     
     #strresponse = temp.stringTemp + waterlevel.waterleveling
     #response = strresponse.encode()
-    clientsock.send(b'response')
+    clientsock.send(data)
     clientsock.close()
 
 

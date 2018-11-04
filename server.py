@@ -8,7 +8,7 @@ import threading
 
 def handler(clientsock, addr):
     data = threading.local()
-    data.x =  clientsock.recv(BUFSIZ)
+    data.x = clientsock.recv(BUFSIZ)
 
     if not data.x:
         exit()
@@ -34,4 +34,5 @@ if __name__ == "__main__":
         print("connected from", addr)
         print("received data:", clientsock.recv(BUFSIZ).decode())
         t = threading.Thread(handler(clientsock, addr))
+        t.start()
 

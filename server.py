@@ -5,10 +5,10 @@ from socket import *
 import threading
 
 def handler(clientsock, addr):
-    while 1:
-        data = clientsock.recv(BUFSIZ)
-        if not data : break
-        clientsock.send(temp.byteTemp)
+    data = clientsock.recv(BUFSIZ)
+    if not data:
+        exit()
+    clientsock.send(temp.byteTemp)
 
     clientsock.close()
 

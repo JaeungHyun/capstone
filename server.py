@@ -4,7 +4,7 @@ import temp
 from socket import *
 
 s = socket(AF_INET, SOCK_STREAM)
-s.bind(('', 8000))
+s.bind(('', 12222))
 s.listen(1)
 print('Connect wating......')
 

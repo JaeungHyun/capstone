@@ -18,6 +18,7 @@ while 1:
 
     print('received data :', data)
     conn.send(temp.byteTemp)
+    print(temp.byteTemp)
 
 conn.close()
 s.close()

@@ -1,38 +1,65 @@
-# *-* coding: utf-8*-*
+# import socket programming library
+import socket
 
+# import thread module 
+from _thread import *
+import threading
+
+# import modules
 import temp
 import Relay
 import waterlevel
-from socket import *
-import threading
 
-def handler(clientsock, addr):
-    data = clientsock.recv(BUFSIZ)
-    if not data:
-        exit()
-    
-    response = temp.stringTemp + waterlevel.waterleveling
-    msg=bytearray(response,'utf-8')
-    clientsock.send(msg)
-    clientsock.close()
+print_lock = threading.Lock()
+
+# thread fuction
+def threaded(c):
+    while True:
+        # data received from client 
+        data = c.recv(1024)
+        if not data:
+            print('Bye')
+            # lock released on exit 
+            print_lock.release()
+            break
+
+        data = temp.stringTemp + waterlevel.waterleveling
+        msg = bytearray(data, 'utf-8')
+
+        c.send(msg)
+
+        # connection closed
+    c.close()
 
 
-if __name__ == "__main__":
-    HOST = ''
-    PORT = 12222
-    BUFSIZ = 1024
-    ADDR = (HOST, PORT)
-    serversock = socket(AF_INET, SOCK_STREAM)
-    serversock.bind(ADDR)
-    serversock.listen(1)
+def Main():
+    host = ""
+
+    # reverse a port on your computer 
+    # in our case it is 12345 but it 
+    # can be anything 
+    port = 12222
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.bind((host, port))
+    print("socket binded to post", port)
+
+    # put the socket into listening mode 
+    s.listen(5)
+    print("socket is listening")
+
+    # a forever loop until client wants to exit 
+    while True:
+        # establish connection with client
+        c, addr = s.accept()
+
+        # lock acquired by client 
+        print_lock.acquire()
+        print('Connected to :', addr[0], ':', addr[1])
+
+        # Start a new thread and return its identifier 
+        start_new_thread(threaded, (c,))
+    s.close()
 
 
-    while 1:
-        print("Waiting for connection...")
-        clientsock, addr = serversock.accept()
-        print("connected from", addr)
-        print("received data:", clientsock.recv(BUFSIZ).decode())
-        t1 = threading.Thread(target=handler, args=(clientsock, addr))
-        t1.start()
-        t2 = threading.Thread(target=handler, args=(clientsock, addr))
-        t2.start()
+if __name__ == '__main__':
+    Main() 

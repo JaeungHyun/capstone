@@ -57,7 +57,7 @@ def Main():
 
         # lock acquired by client 
         print_lock.acquire()
-        print('Connected to :', addr[0], ':', addr[1])
+        print('Connected to :', addr)
 
         # Start a new thread and return its identifier 
         start_new_thread(threaded, (client,))

@@ -4,7 +4,7 @@ from multiprocessing import Process
 
 
 def main():
-    cycle = 86400  # initial cycle is 1 hour
+    cycle = 86400  # initial cycle is 1 day
     process_watering = Process(target=relay_water.water_relay(cycle))
     process_watering.start()
     while True:

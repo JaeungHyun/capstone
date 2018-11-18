@@ -64,7 +64,6 @@ def main():
 
 
 if __name__ == '__main__':
-    q = Queue()
     p_temp, p_cycle = Pipe()
     process_temp = Process(target=temp.main, args=(p_temp,))
     process_temp.start()

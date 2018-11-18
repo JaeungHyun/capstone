@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import Adafruit_DHT
-import Relay
+import relay
 import time
 import server
 
@@ -26,9 +26,9 @@ def main():
             continue
 
         if temp < target_temp:
-            Relay.relay_on()
+            relay.relay_on()
         else:
-            Relay.relay_off()
+            relay.relay_off()
 
         print("0.1f" % temp)
         time.sleep(10)

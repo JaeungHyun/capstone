@@ -1,46 +1,45 @@
-# import socket programming library
 import socket
-
-# import thread module 
 from _thread import *
 import threading
+from multiprocessing import Process, Queue, Pipe
 
-# import modules
 import temp
-import Relay
 import waterlevel
+import control_relay_water
 
 print_lock = threading.Lock()
 
+
 # thread function
 def threaded(c):
-    while True:
-        # data received from client 
-        data = c.recv(1024)
-        if not data:
-            print('Bye')
-            # lock released on exit 
-            print_lock.release()
-            break
-            
-        t_value = temp.checktemp()
-        w_value = waterlevel.waterleveling()
-        print(t_value, w_value)
-        data = t_value + w_value
-        msg = bytearray(data, 'utf-8')
+    # data received from client
+    data = c.recv(1024)
+    if not data:
+        print('Bye')
+        # lock released on exit
+        print_lock.release()
 
-        c.send(msg)
+    decoded_data = data.decode()
+    data_list = decoded_data.split(',')
+    p_temp.send(data_list[0])
+    p_cycle.send(data_list[1])
+    t_value = temp.checktemp()
+    w_value = waterlevel.waterleveling() # e.g.) temp\nhumidity\n
+    print(t_value, w_value)
+    data = t_value + w_value
+    msg = bytearray(data, 'utf-8')
 
-        # connection closed
+    c.send(msg)
+
+    # connection closed
     c.close()
 
 
-def Main():
+def main():
+
     host = ""
 
-    # reverse a port on your computer 
-    # in our case it is 12345 but it 
-    # can be anything 
+    # reverse a port on your computer
     port = 12222
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((host, port))
@@ -65,4 +64,10 @@ def Main():
 
 
 if __name__ == '__main__':
-    Main()
+    q = Queue()
+    p_temp, p_cycle = Pipe()
+    process_temp = Process(target=temp.main, args=(p_temp,))
+    process_temp.start()
+    process_water_relay = Process(target=control_relay_water.main(), args=(p_cycle,))
+    process_water_relay.start()
+    main()

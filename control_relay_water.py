@@ -1,18 +1,20 @@
-import threading
 import server
 import relay_water
+from multiprocessing import Process
 
 
 def main():
+    cycle = 86400  # initial cycle is 1 hour
+    process_watering = Process(target=relay_water.water_relay(cycle))
+    process_watering.start()
     while True:
-        cycle = server.p_cycle.recv()
-        if cycle is not None:
-            save_cycle = cycle
+        if server.p_cycle.recv() is None:
+            continue
         else:
-            cycle = save_cycle
-
-        relay_water.water_relay_first()
-        threading.Timer(cycle, relay_water.water_relay()).start()
+            if cycle != server.p_cycle.recv():
+                process_watering.terminate()
+                cycle = server.p_cycle.recv()
+                process_watering.start()
 
 
 if __name__ == '__main__':

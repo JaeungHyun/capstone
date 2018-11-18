@@ -1,7 +1,7 @@
 import socket
 from _thread import *
 import threading
-from multiprocessing import Process, Queue, Pipe
+from multiprocessing import Process, Pipe
 
 import temp
 import waterlevel
@@ -23,10 +23,10 @@ def threaded(c):
     data_list = decoded_data.split(',')
     p_temp.send(data_list[0])
     p_cycle.send(data_list[1])
-    t_value = temp.checktemp()
+    t_value = temp.checktemp()   # e.g.) temp\nhumidity\n
     w_value = waterlevel.waterleveling() # e.g.) temp\nhumidity\n
     print(t_value, w_value)
-    data = t_value + w_value
+    data = t_value + w_value    # e.g.) temp\nhumidity\nwaterlevel\n
     msg = bytearray(data, 'utf-8')
 
     c.send(msg)

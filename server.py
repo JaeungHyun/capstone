@@ -21,8 +21,8 @@ def threaded(c):
 
     decoded_data = data.decode()
     temperature, cycle = decoded_data.split(',')
-    p_temp.send(temperature)
-    p_cycle.send(cycle)
+    p_temp.send(float(temperature))
+    p_cycle.send(int(cycle))
     t_value = temp.checktemp()   # e.g.) temp\nhumidity\n
     w_value = waterlevel.waterleveling()  # e.g.) temp\nhumidity\n
     print(t_value, w_value)

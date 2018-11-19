@@ -1,8 +1,7 @@
-import RPi.GPIO as GPIO
 import Adafruit_DHT
 import relay
 import time
-import server
+
 
 sensor = Adafruit_DHT.DHT22
 pin = 4

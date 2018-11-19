@@ -65,8 +65,8 @@ def Main():
 
 if __name__ == '__main__':
     p_temp, p_cycle = Pipe()
-    p_temp.send(0)
-    p_cycle.send(1)
+    # p_temp.send(None)
+    # p_cycle.send(None)
     process_temp = Process(target=temp.Main(), args=(p_temp,))
     process_temp.start()
     process_water_relay = Process(target=control_relay_water.Main(), args=(p_cycle,))

@@ -2,6 +2,8 @@ import server
 import relay_water
 from multiprocessing import Process
 
+# To check watering cycle
+
 
 def Main(p_cycle):
     print("control relay process is started")

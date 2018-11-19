@@ -6,7 +6,7 @@ import time
 sensor = Adafruit_DHT.DHT22
 pin = 17
 
-
+# check temperature and humidity for Thread of server.py
 def checktemp():
     humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
     if humidity is not None and temperature is not None:

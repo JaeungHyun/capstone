@@ -17,7 +17,7 @@ def threaded(c):
     if not data:
         print('Bye')
         # lock released on exit
-        print_lock.release()
+        #b print_lock.release()
 
     print(data)
     decoded_data = data.decode()
@@ -57,7 +57,7 @@ def Main():
         client, addr = s.accept()
 
         # lock acquired by client 
-        print_lock.acquire()
+        # print_lock.acquire()
         print('Connected to :', addr)
 
         # Start a new thread and return its identifier 

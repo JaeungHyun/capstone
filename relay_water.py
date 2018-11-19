@@ -5,6 +5,7 @@ pin = 15
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(pin, GPIO.OUT)
 
+
 def water_relay(cycle):
     while True:
         GPIO.output(pin, GPIO.HIGH)  # on

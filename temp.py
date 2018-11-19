@@ -31,7 +31,7 @@ def Main(p_temp):
             relay.relay_off()
 
         print("0.1f" % temp)
-        time.sleep(10)
+        # time.sleep(10)
 
 
 if __name__ == '__main__':

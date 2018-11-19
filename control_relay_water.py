@@ -18,7 +18,5 @@ def Main(p_cycle):
                 process_watering.start()
 
 
-
 if __name__ == '__main__':
-    print("temp process is started")
     Main()

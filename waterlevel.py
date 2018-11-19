@@ -1,13 +1,10 @@
-import serial
+import RPi.GPIO as GPIO
 
-port = '/dev/ttyACM0'
+pin = 27
+data = GPIO.input(pin)
 
-data = serial.Serial(port, baudrate=9600, timeout=None)
 
 def waterleveling():
-    waterlevel = data.readline()
-    waterleveling = waterlevel.decode() + '\n'
-    print(waterlevel.decode())
+    waterleveling = data.decode() + '\n'
+    print("Status of Water is %d" % waterleveling)
     return waterleveling
-
-

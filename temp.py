@@ -4,7 +4,7 @@ import time
 
 
 sensor = Adafruit_DHT.DHT22
-pin = 11
+pin = 17
 
 
 def checktemp():

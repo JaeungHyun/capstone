@@ -19,6 +19,7 @@ def threaded(c):
         # lock released on exit
         print_lock.release()
 
+    print(data)
     decoded_data = data.decode()
     print(decoded_data)
     temperature, cycle = decoded_data.split(',')

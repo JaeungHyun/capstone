@@ -1,5 +1,5 @@
 import socket
-from thread import *
+from _thread import *
 import threading
 from multiprocessing import Process, Pipe
 

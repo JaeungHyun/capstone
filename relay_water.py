@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 
 pin = 15
-
+GPIO.setup(pin, GPIO.IN)
 
 def water_relay(cycle):
     while True:

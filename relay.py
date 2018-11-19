@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 
 pin = 17
-
+GPIO.setup(pin, GPIO.IN)
 
 def relay_on():
     GPIO.output(pin, GPIO.HIGH)  # on

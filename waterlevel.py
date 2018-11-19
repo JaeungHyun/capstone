@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 
 pin = 27
+GPIO.setup(pin, GPIO.IN)
 data = GPIO.input(pin)
 
 

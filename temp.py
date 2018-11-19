@@ -21,7 +21,7 @@ def Main(p_temp):
     while True:
         humid, temp = Adafruit_DHT.read_retry(sensor, pin)
         target_temp = p_temp.recv()
-
+        print(temp)
         if target_temp is None:
             continue
 

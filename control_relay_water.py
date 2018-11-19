@@ -3,7 +3,7 @@ import relay_water
 from multiprocessing import Process
 
 
-def main():
+def Main():
     cycle = 86400  # initial cycle is 1 day
     process_watering = Process(target=relay_water.water_relay(cycle))
     process_watering.start()
@@ -18,4 +18,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    Main()

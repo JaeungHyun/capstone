@@ -17,7 +17,7 @@ def checktemp():
     return stringtemp
 
 
-def main():
+def Main():
     while True:
         humid, temp = Adafruit_DHT.read_retry(sensor, pin)
         target_temp = server.p_temp.recv()
@@ -35,4 +35,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    Main()

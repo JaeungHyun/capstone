@@ -35,7 +35,7 @@ def threaded(c):
     c.close()
 
 
-def main():
+def Main():
 
     host = ""
 
@@ -69,4 +69,4 @@ if __name__ == '__main__':
     process_temp.start()
     process_water_relay = Process(target=control_relay_water.main(), args=(p_cycle,))
     process_water_relay.start()
-    main()
+    Main()

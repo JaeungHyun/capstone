@@ -8,5 +8,5 @@ data = GPIO.input(pin)
 
 def waterleveling():
     waterleveling = str(data) + '\n'
-    print("Status of Water is %d" % waterleveling)
+    print("Status of Water is %s" % waterleveling)
     return waterleveling

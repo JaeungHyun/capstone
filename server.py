@@ -30,7 +30,7 @@ def threaded(c):
     print(t_value, w_value)
     data = t_value + w_value    # e.g.) temp\nhumidity\nwaterlevel\n
     msg = bytearray(data, 'utf-8')
-
+    print(msg)
     c.send(msg)
 
     # connection closed

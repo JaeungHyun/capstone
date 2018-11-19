@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 
-pin = 17
+pin = 29
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(pin, GPIO.IN)
 

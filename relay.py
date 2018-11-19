@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 
 pin = 17
+GPIO.setmode(GPIO.BOARD)
 GPIO.setup(pin, GPIO.IN)
 
 def relay_on():

@@ -21,7 +21,7 @@ def threaded(c):
 
     print(data)
     decoded_data = data.decode()
-    print(decoded_data)
+    print('decoded data is', decoded_data)
     temperature, cycle = decoded_data.split(',')
     p_temp.send(float(temperature))
     p_cycle.send(int(cycle))

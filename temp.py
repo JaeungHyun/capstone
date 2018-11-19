@@ -18,6 +18,7 @@ def checktemp():
 
 
 def Main(p_temp):
+    print("temp process is started")
     while True:
         humid, temp = Adafruit_DHT.read_retry(sensor, pin)
         target_temp = p_temp.recv()

@@ -19,4 +19,5 @@ def Main(p_cycle):
 
 
 if __name__ == '__main__':
+    print("temp process is started")
     Main()

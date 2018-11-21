@@ -20,7 +20,7 @@ def checktemp():
 def Main(p_temp, recv_temp):
     print("temp process is started")
 
-    with open('config.json', 'r') as f:
+    with open('home/pi/capstone/config.json', 'r') as f:
         config_data = json.load(f)
 
     while True:

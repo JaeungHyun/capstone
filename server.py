@@ -1,7 +1,7 @@
 import socket
 from _thread import *
 import threading
-from multiprocessing import Process, Pipe
+from multiprocessing import Process, Value
 
 import temp
 import waterlevel
@@ -23,8 +23,8 @@ def threaded(c):
     decoded_data = data.decode()
     print('decoded data is', decoded_data)
     temperature, cycle = decoded_data.split(',')
-    p_temp.send(float(temperature))
-    p_cycle.send(int(cycle))
+    p_temp = Value(float(temperature), 0)
+    p_cycle = Value(int(cycle), 0)
     t_value = temp.checktemp()            # e.g.) temp\nhumidity\n
     w_value = waterlevel.waterleveling()  # e.g.) temp\nhumidity\n
     print(t_value, w_value)
@@ -66,8 +66,8 @@ def Main():
 
 
 if __name__ == '__main__':
-    p_temp = Pipe()
-    p_cycle = Pipe()
+    p_temp = Value(None, 0)
+    p_cycle = Value(None, 0)
     process_temp = Process(target=temp.Main, args=(p_temp,))
     process_temp.start()
     process_water_relay = Process(target=control_relay_water.Main, args=(p_cycle,))

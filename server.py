@@ -68,7 +68,7 @@ def Main():
             config["target_cycle"] = recv_cycle.value
 
             # Save config value
-            with open('Config.json', 'w', encoding='utf-8') as make_file:
+            with open('config.json', 'w', encoding='utf-8') as make_file:
                 json.dump(config, make_file, ensure_ascii=False, indent="\t")
 
             print("Release all GPIO resource")

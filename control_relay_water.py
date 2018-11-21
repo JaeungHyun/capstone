@@ -6,13 +6,11 @@ import time
 
 
 def Main(p_cycle):
-    processes = []
     print("control relay process is started")
     cycle = 86400
     send_cycle = Queue()
     send_cycle.put(cycle)  # default cycle is 1 day
     process_watering = Process(target=relay_water.water_relay, args=(send_cycle, ))
-    processes.append(process_watering)
     process_watering.start()
     print("process_watering is alive")
 
@@ -25,8 +23,9 @@ def Main(p_cycle):
         if cycle != target_cycle:
             process_watering.terminate()
             print("process_watering is dead")
+            time.sleep(1)
             send_cycle.put(target_cycle)
-            processes.append(process_watering)
+            process_watering = Process(target=relay_water.water_relay, args=(send_cycle,))
             process_watering.start()
             print("process_watering is alive again!")
             cycle = target_cycle

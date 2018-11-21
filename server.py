@@ -1,7 +1,7 @@
 import socket
 from _thread import *
 import threading
-from multiprocessing import Process, Value, Queue
+from multiprocessing import Process, Queue
 
 import temp
 import waterlevel
@@ -65,13 +65,13 @@ def Main():
 
         # Start a new thread and return its identifier 
         start_new_thread(threaded, (client,))
-    s.close()
+        try:
+            pass
+        except KeyboardInterrupt:
+            s.close()
 
 
 if __name__ == '__main__':
-    # global p_temp, p_cycle
-    # p_temp = Value('i', 0)
-    # p_cycle = Value('j', 0)
     p_temp = Queue()
     p_cycle = Queue()
     process_temp = Process(target=temp.Main, args=(p_temp,))

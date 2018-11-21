@@ -31,8 +31,6 @@ def Main(p_cycle):
             print("process_watering is alive again!")
             cycle = target_cycle
 
-        # time.sleep(10)
-
 
 if __name__ == '__main__':
     Main()

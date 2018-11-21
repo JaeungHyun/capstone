@@ -15,3 +15,4 @@ def water_relay(recv):
         time.sleep(5)
         GPIO.output(pin, GPIO.LOW)    # off
         time.sleep(cycle-5)
+

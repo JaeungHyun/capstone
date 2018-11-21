@@ -26,6 +26,7 @@ def Main(p_cycle):
             time.sleep(1)
             send_cycle.put(target_cycle)
             process_watering = Process(target=relay_water.water_relay, args=(send_cycle,))
+            # 프로세스 종료 후 동일한 프로세스를 다시 시작하지 못한다. 따라서 프로세스를 다시 선언해야함
             process_watering.start()
             print("process_watering is alive again!")
             cycle = target_cycle

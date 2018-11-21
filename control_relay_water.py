@@ -1,13 +1,16 @@
 import relay_water
-from multiprocessing import Process
+from multiprocessing import Process, Queue
+import time
 
 # To check watering cycle
 
 
 def Main(p_cycle):
     print("control relay process is started")
-    cycle = 86400  # default cycle is 1 day
-    process_watering = Process(target=relay_water.water_relay(cycle))
+    cycle = 86400
+    send_cycle = Queue()
+    send_cycle.put(cycle)  # default cycle is 1 day
+    process_watering = Process(target=relay_water.water_relay, args=(send_cycle, ))
     process_watering.start()
     while True:
         target_cycle = p_cycle.get()
@@ -19,9 +22,12 @@ def Main(p_cycle):
             process_watering.terminate()
             print("process_watering is dead")
             relay_water.water_relay()
-            cycle = target_cycle
+            send_cycle.put(target_cycle)
             process_watering.start()
             print("process_watering is alive")
+            cycle = target_cycle
+
+        time.sleep(10)
 
 
 if __name__ == '__main__':

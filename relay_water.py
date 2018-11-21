@@ -7,7 +7,8 @@ GPIO.setup(pin, GPIO.OUT)
 
 
 # 솔레노이드 밸브 제어
-def water_relay(cycle):
+def water_relay(recv):
+    cycle = recv.get()
     print('target_cycle is ', cycle)
     while True:
         GPIO.output(pin, GPIO.HIGH)  # on

@@ -12,7 +12,7 @@ def Main(p_cycle):
     send_cycle.put(cycle)  # default cycle is 1 day
     process_watering = Process(target=relay_water.water_relay, args=(send_cycle, ))
     process_watering.start()
-    print("process_watering is alive again!")
+    print("process_watering is alive")
 
     while True:
         target_cycle = p_cycle.get()

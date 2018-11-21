@@ -11,13 +11,13 @@ def Main(p_cycle):
     process_watering = Process(target=relay_water.water_relay(cycle))
     process_watering.start()
     while True:
-        if p_cycle.recv() is None:
+        if p_cycle.value is None:
             continue
         else:
-            if cycle != server.p_cycle.recv():
+            if cycle != server.p_cycle.value:
                 process_watering.terminate()
                 relay_water.water_relay()
-                cycle = server.p_cycle.recv()
+                cycle = server.p_cycle.value
                 process_watering.start()
 
 

@@ -1,6 +1,7 @@
 import socket
 from _thread import *
 import threading
+from ctypes import c_float
 from multiprocessing import Process, Value
 
 import temp
@@ -23,7 +24,7 @@ def threaded(c):
     decoded_data = data.decode()
     print('decoded data is', decoded_data)
     temperature, cycle = decoded_data.split(',')
-    p_temp = Value(float(temperature), 0)
+    p_temp = Value(c_float, float(temperature))
     p_cycle = Value(int(cycle), 0)
     t_value = temp.checktemp()            # e.g.) temp\nhumidity\n
     w_value = waterlevel.waterleveling()  # e.g.) temp\nhumidity\n

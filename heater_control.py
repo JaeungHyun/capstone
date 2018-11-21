@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 pin = 29
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(pin, GPIO.OUT)
+GPIO.setwarnings(False)
 
 # 온풍기 릴레이 제어
 def relay_on():
@@ -16,8 +17,13 @@ def relay_off():
 
 
 def main():
-    relay_on()
-    import time
-    time.sleep(3)
-    relay_off()
-    time.sleep(3)
+    while True:
+        relay_on()
+        import time
+        time.sleep(3)
+        relay_off()
+        time.sleep(3)
+        
+        
+if __name__ == '__main__':
+    main()

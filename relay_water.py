@@ -8,6 +8,7 @@ GPIO.setup(pin, GPIO.OUT)
 
 # 솔레노이드 밸브 제어
 def water_relay(cycle):
+    print('target_cycle is ', cycle)
     while True:
         GPIO.output(pin, GPIO.HIGH)  # on
         time.sleep(5)

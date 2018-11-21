@@ -17,9 +17,11 @@ def Main(p_cycle):
         else:
             if cycle != target_cycle:
                 process_watering.terminate()
+                print("process_watering is dead")
                 relay_water.water_relay()
                 cycle = target_cycle
                 process_watering.start()
+                print("process_watering is alive")
 
 
 if __name__ == '__main__':

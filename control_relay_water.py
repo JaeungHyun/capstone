@@ -10,7 +10,7 @@ def Main(p_cycle, recv_cycle):
     print("control relay process is started")
 
     with open('config.json', 'r') as f:
-        config_data = json.loads(f)
+        config_data = json.load(f)
 
     cycle = config_data["target_cycle"]
     print("Loaded target cycle is ", cycle)

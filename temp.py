@@ -21,7 +21,7 @@ def Main(p_temp, recv_temp):
     print("temp process is started")
 
     with open('config.json', 'r') as f:
-        config_data = json.loads(f)
+        config_data = json.load(f)
 
     while True:
         humid, temp = Adafruit_DHT.read_retry(sensor, pin)

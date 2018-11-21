@@ -26,6 +26,8 @@ def Main(p_temp):
         if target_temp is None:
             continue
 
+        print('target temp is ', target_temp)
+
         if temp < target_temp:
             relay.relay_on()
         else:

@@ -17,7 +17,7 @@ def threaded(c):
     if not data:
         print('Bye')
         # lock released on exit
-        #b print_lock.release()
+        # print_lock.release()
 
     print(data)
     decoded_data = data.decode()
@@ -30,10 +30,10 @@ def threaded(c):
     # print(p_temp.value, p_cycle.value)
     t_value = temp.checktemp()            # e.g.) temp\nhumidity\n
     w_value = waterlevel.waterleveling()  # e.g.) temp\nhumidity\n
-    print(t_value, w_value)
+    # print(t_value, w_value)
     data = t_value + w_value              # e.g.) temp\nhumidity\nwaterlevel\n
     msg = bytearray(data, 'utf-8')
-    print(msg)
+    # print(msg)
     c.send(msg)
 
     # connection closed

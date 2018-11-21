@@ -4,7 +4,7 @@ import time
 
 
 sensor = Adafruit_DHT.DHT22
-pin = 17
+pin = 17                  # GPIO number를 사용해야함
 
 # check temperature and humidity for Thread of server.py
 def checktemp():

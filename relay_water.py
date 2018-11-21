@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
-pin = 15
+pin = 15                    # pin number를 사용해야함
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(pin, GPIO.OUT)
 

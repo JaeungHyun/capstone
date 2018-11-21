@@ -33,7 +33,7 @@ def Main(p_temp):
         else:
             relay.relay_off()
 
-        print("0.1f" % temp)
+        print(temp)
         time.sleep(10)
 
 

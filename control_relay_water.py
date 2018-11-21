@@ -1,7 +1,6 @@
 import relay_water
 from multiprocessing import Process, Queue
 import time
-import json
 
 # To check watering cycle
 
@@ -9,13 +8,10 @@ import json
 def Main(p_cycle, recv_cycle):
     print("control relay process is started")
 
-    with open('home/pi/capstone/config.json', 'r') as f:
-        config_data = json.load(f)
-
-    cycle = config_data["target_cycle"]
+    cycle = 86400               # default cycle is 1 day
     print("Loaded target cycle is ", cycle)
     send_cycle = Queue()
-    send_cycle.put(cycle)  # default cycle is 1 day
+    send_cycle.put(cycle)
     process_watering = Process(target=relay_water.water_relay, args=(send_cycle, ))
     process_watering.start()
     print("process_watering is alive")

@@ -62,15 +62,15 @@ def Main():
         except KeyboardInterrupt:
             s.close()                              # socket closed
             GPIO.cleanup()
-
+            '''
             config = OrderedDict()
             config["target_temp"] = recv_temp.value
             config["target_cycle"] = recv_cycle.value
-
+            
             # Save config value
             with open('config.json', 'w', encoding='utf-8') as make_file:
                 json.dump(config, make_file, ensure_ascii=False, indent="\t")
-
+            '''
             print("Release all GPIO resource")
             print("Exit program")
 

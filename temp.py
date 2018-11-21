@@ -12,7 +12,7 @@ def checktemp():
     if humidity is not None and temperature is not None:
         print("Temp=%0.1f Humidity=%0.1f" % (temperature, humidity))
 
-    stringtemp = str(temperature)+'\n'+str(humidity)+'\n'
+    stringtemp = str(temperature)+'\n'+str(humidity)+'\n'  # wrapping to send to client
     return stringtemp
 
 

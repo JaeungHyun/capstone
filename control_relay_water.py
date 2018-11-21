@@ -16,7 +16,6 @@ def Main(p_cycle):
 
     while True:
         target_cycle = p_cycle.get()
-        # print('target_cycle is ', target_cycle)
         if target_cycle is None:
             continue
 

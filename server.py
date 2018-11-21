@@ -3,6 +3,8 @@ from _thread import *
 import threading
 from multiprocessing import Process, Queue
 
+import RPi.GPIO as GPIO
+
 import temp
 import waterlevel
 import control_relay_water
@@ -15,25 +17,17 @@ def threaded(c):
     # data received from client
     data = c.recv(1024)
     if not data:
-        print('Bye')
-        # lock released on exit
-        # print_lock.release()
+        print('Data is not received')
 
-    # print(data)
     decoded_data = data.decode()
     print('decoded data is', decoded_data)
     temperature, cycle = decoded_data.split(',')
-    # p_temp.value = float(temperature)
-    # p_cycle.value = int(cycle)
     p_temp.put(float(temperature))
     p_cycle.put(int(cycle))
-    # print(p_temp.value, p_cycle.value)
     t_value = temp.checktemp()            # e.g.) temp\nhumidity\n
     w_value = waterlevel.waterleveling()  # e.g.) temp\nhumidity\n
-    # print(t_value, w_value)
     data = t_value + w_value              # e.g.) temp\nhumidity\nwaterlevel\n
     msg = bytearray(data, 'utf-8')
-    # print(msg)
     c.send(msg)
 
     # connection closed
@@ -54,13 +48,10 @@ def Main():
     s.listen(5)
     print("socket is listening")
 
-    # a forever loop until client wants to exit 
     while True:
         # establish connection with client
         client, addr = s.accept()
 
-        # lock acquired by client 
-        # print_lock.acquire()
         print('Connected to :', addr)
 
         # Start a new thread and return its identifier 
@@ -69,6 +60,7 @@ def Main():
             pass
         except KeyboardInterrupt:
             s.close()
+            GPIO.cleanup()
 
 
 if __name__ == '__main__':

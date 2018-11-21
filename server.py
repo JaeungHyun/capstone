@@ -68,8 +68,8 @@ def Main():
 
 if __name__ == '__main__':
     global p_temp, p_cycle
-    p_temp = Value('i', float(0))
-    p_cycle = Value('j', int(0))
+    p_temp = Value('i', 0.0)
+    p_cycle = Value('j', 0)
     process_temp = Process(target=temp.Main, args=(p_temp,))
     process_temp.start()
     process_water_relay = Process(target=control_relay_water.Main, args=(p_cycle,))

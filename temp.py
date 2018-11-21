@@ -21,19 +21,15 @@ def Main(p_temp):
     while True:
         humid, temp = Adafruit_DHT.read_retry(sensor, pin)
         target_temp = p_temp.get()
-        print('target temp(1) is ', target_temp)
-        print(temp)
+
         if target_temp is None:
             continue
-
-        print('target temp is(2) ', target_temp)
 
         if temp < target_temp:
             relay.relay_on()
         else:
             relay.relay_off()
 
-        print(temp)
         time.sleep(10)
 
 

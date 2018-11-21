@@ -14,14 +14,14 @@ def Main(p_cycle):
         print('target_cycle is ', target_cycle)
         if target_cycle is None:
             continue
-        else:
-            if cycle != target_cycle:
-                process_watering.terminate()
-                print("process_watering is dead")
-                relay_water.water_relay()
-                cycle = target_cycle
-                process_watering.start()
-                print("process_watering is alive")
+
+        if cycle != target_cycle:
+            process_watering.terminate()
+            print("process_watering is dead")
+            relay_water.water_relay()
+            cycle = target_cycle
+            process_watering.start()
+            print("process_watering is alive")
 
 
 if __name__ == '__main__':

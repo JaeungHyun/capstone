@@ -1,4 +1,3 @@
-import server
 import relay_water
 from multiprocessing import Process
 
@@ -11,13 +10,15 @@ def Main(p_cycle):
     process_watering = Process(target=relay_water.water_relay(cycle))
     process_watering.start()
     while True:
-        if p_cycle.value is None:
+        target_cycle = p_cycle.get()
+        print('target_cycle is ', target_cycle)
+        if target_cycle is None:
             continue
         else:
-            if cycle != server.p_cycle.value:
+            if cycle != target_cycle:
                 process_watering.terminate()
                 relay_water.water_relay()
-                cycle = server.p_cycle.value
+                cycle = target_cycle
                 process_watering.start()
 
 

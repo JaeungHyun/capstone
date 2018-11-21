@@ -1,6 +1,7 @@
 import Adafruit_DHT
 import relay
 import time
+import json
 
 
 sensor = Adafruit_DHT.DHT22
@@ -16,13 +17,20 @@ def checktemp():
     return stringtemp
 
 
-def Main(p_temp):
+def Main(p_temp, recv_temp):
     print("temp process is started")
+
+    with open('config.json', 'r') as f:
+        config_data = json.loads(f)
+
     while True:
         humid, temp = Adafruit_DHT.read_retry(sensor, pin)
+        global target_temp
         target_temp = p_temp.get()
 
         if target_temp is None:
+            target_temp = config_data["target_temp"]
+            print("Loaded target temperature is ", target_temp)
             continue
 
         if temp < target_temp:
@@ -30,6 +38,7 @@ def Main(p_temp):
         else:
             relay.relay_off()
 
+        recv_temp.value = target_temp
         time.sleep(10)
 
 

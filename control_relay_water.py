@@ -1,13 +1,19 @@
 import relay_water
 from multiprocessing import Process, Queue
 import time
+import json
 
 # To check watering cycle
 
 
-def Main(p_cycle):
+def Main(p_cycle, recv_cycle):
     print("control relay process is started")
-    cycle = 86400
+
+    with open('config.json', 'r') as f:
+        config_data = json.loads(f)
+
+    cycle = config_data["target_cycle"]
+    print("Loaded target cycle is ", cycle)
     send_cycle = Queue()
     send_cycle.put(cycle)  # default cycle is 1 day
     process_watering = Process(target=relay_water.water_relay, args=(send_cycle, ))
@@ -16,6 +22,7 @@ def Main(p_cycle):
 
     while True:
         target_cycle = p_cycle.get()
+
         if target_cycle is None:
             continue
 
@@ -29,6 +36,8 @@ def Main(p_cycle):
             process_watering.start()
             print("process_watering is alive again!")
             cycle = target_cycle
+
+        recv_cycle.value = target_cycle
 
 
 if __name__ == '__main__':

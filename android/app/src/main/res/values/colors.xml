@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3fb543</color>
+    <color name="colorPrimaryDark">#216923</color>
+    <color name="colorAccent">#ff4081</color>
+    <color name="background">#ffffff</color>
+    <color name="text">#000000</color>
+    <color name="cardBackground">#fff</color>
+    <color name="confirmed">#00ff00</color>
+    <color name="rejected">#ff0000</color>
+    <color name="tempTitle">#e8350f</color>
+    <color name="waterTitle">#5858fe</color>
+    <color name="graphBack">#222222</color>
+</resources>

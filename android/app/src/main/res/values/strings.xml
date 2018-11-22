@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_image_desc">title image</string>
+    <string name="applied">successfully applied</string>
+    <string name="up">up</string>
+    <string name="down">down</string>
+    <string name="temperature_tooltip">\tTemperature</string>
+    <string name="water_tooltip">Water Level</string>
+    <string name="targetTemp">Target Temperature</string>
+    <string name="now_temp">Temperature on now : </string>
+    <string name="target_temp">Set temperature for : </string>
+    <string name="now_level">Water Level on now : </string>
+    <string name="now_term"> Now give water per : </string>
+    <string name="target_term"> Set water giving timing to : </string>
+    <string name="temp_image_desc">Temperature title image</string>
+    <string name="option">Option</string>
+    <string name="app_name" translatable="false">EES</string>
+    <string name="target_term_hint">Target Timing</string>
+    <string name="celsius" translatable="false">℃</string>
+    <string name="hour">hour</string>
+    <string name="percentage" translatable="false">%</string>
+    <string name="refresh">Refresh</string>
+    <string name="update_success">update successfully.</string>
+    <string name="autoUpdate">AutoUpdateTerm</string>
+    <string name="accessibility">Accessibility</string>
+    <string name="second">second(s)</string>
+    <string name="now_humidity">Humidity</string>
+    <string name="update_failed">updated failed</string>
+    <string name="ip">IP</string>
+    <string name="port">Port</string>
+    <string name="connection">Connection</string>
+    <string name="enough_water">Enough</string>
+    <string name="lack_water">Lack</string>
+</resources>

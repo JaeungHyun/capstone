@@ -16,22 +16,23 @@ import control_relay_water
 def threaded(c):
     # data received from client
     data = c.recv(1024)
-    if not data:
-        print('Data is not received')
 
-    decoded_data = data.decode()
-    print('decoded data is', decoded_data)
-    temperature, cycle = decoded_data.split(',')
-    p_temp.put(float(temperature))
-    p_cycle.put(int(cycle))
-    t_value = temp.checktemp()            # e.g.) temp\nhumidity\n
-    w_value = waterlevel.waterleveling()  # e.g.) temp\nhumidity\n
-    data = t_value + w_value              # e.g.) temp\nhumidity\nwaterlevel\n
-    msg = bytearray(data, 'utf-8')
-    c.send(msg)
+    try:
+        decoded_data = data.decode()
+        print('decoded data is', decoded_data)
+        temperature, cycle = decoded_data.split(',')
+        p_temp.put(float(temperature))
+        p_cycle.put(int(cycle))
+        t_value = temp.checktemp()            # e.g.) temp\nhumidity\n
+        w_value = waterlevel.waterleveling()  # e.g.) temp\nhumidity\n
+        data = t_value + w_value              # e.g.) temp\nhumidity\nwaterlevel\n
+        msg = bytearray(data, 'utf-8')
+        c.send(msg)
 
-    # connection closed
-    c.close()
+        # connection closed
+        c.close()
+    except ValueError as e:
+        print(e)
 
 
 def Main():

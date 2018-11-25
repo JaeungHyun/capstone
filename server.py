@@ -50,16 +50,14 @@ def Main():
     print("socket is listening")
 
     while True:
-        # establish connection with client
-        client, addr = s.accept()
-
-        print('Connected to :', addr)
-
-        # Start a new thread and return its identifier 
-        start_new_thread(threaded, (client,))
-
         try:
-            pass
+            # establish connection with client
+            client, addr = s.accept()
+
+            print('Connected to :', addr)
+
+            # Start a new thread and return its identifier
+            start_new_thread(threaded, (client,))
         except KeyboardInterrupt:
             s.close()                              # socket closed
             GPIO.cleanup()
